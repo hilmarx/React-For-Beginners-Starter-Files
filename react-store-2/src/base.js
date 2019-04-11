@@ -5,9 +5,9 @@ import firebase from 'firebase'
 
 // Creates firebase App
 const firebaseApp = firebase.initializeApp({
-    apiKey: "AIzaSyAfcKFEmD42c5pIABmtcBoC-o0dOKc2CHM",
-    authDomain: "react-store-tut2.firebaseapp.com",
-    databaseURL: "https://react-store-tut2.firebaseio.com"
+    apiKey: "x",
+    authDomain: "x",
+    databaseURL: "x"
 })
 
 // Create Firebase x Rebase bindings

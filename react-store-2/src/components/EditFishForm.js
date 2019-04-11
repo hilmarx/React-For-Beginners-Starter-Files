@@ -1,7 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {formatPrice} from '../helpers'
 
 class EditFishForm extends React.Component {
+    static propTypes = {
+        deleteFish: PropTypes.func,
+        fish: PropTypes.object,
+        index: PropTypes.string,
+        updateFish: PropTypes.func
+    }
+
     // Function for removing a fish
     handleDelete = (event) => {
         event.preventDefault()

@@ -1,5 +1,6 @@
 // The Mama component 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from './Header';
 import Fish from './Fish';
 import Inventory from './Inventory';
@@ -8,6 +9,14 @@ import sampleFishes from '../sample-fishes';
 import base from '../base'
 
 class App extends React.Component {
+    static propTypes = {
+        match: PropTypes.shape({
+            params: PropTypes.shape({
+                storeId: PropTypes.string
+            })
+        })
+    }
+
     state = {
         fishes: {},
         order: {}
@@ -56,9 +65,20 @@ class App extends React.Component {
 
     addToOrder = key => {
         const order = {...this.state.order}
-        console.log(order[key])
         order[key] = order[key] + 1 || 1
         this.setState({order: order})
+    }
+
+    deleteFromOrder = key => {
+        const order = { ...this.state.order }
+        /*if (order[key] > 1) {
+            order[key] = order[key] - 1
+        } else {
+            order[key] = 0;
+        }
+        */
+        delete order[key];
+        this.setState( {order} );
     }
 
     addFish = fish => {
@@ -92,13 +112,20 @@ class App extends React.Component {
                     </ul>
                     
                 </div>
-                <Order fishes={this.state.fishes} order={this.state.order} addToOrder={this.addToOrder}></Order>
+                <Order 
+                    fishes={this.state.fishes} 
+                    index={this.key}
+                    order={this.state.order} 
+                    addToOrder={this.addToOrder}
+                    deleteFromOrder = {this.deleteFromOrder}>   
+                </Order>
                 <Inventory 
                     fishes={this.state.fishes} 
                     updateFish={this.updateFish} 
                     addFish={this.addFish} 
                     loadSampleFishes={this.loadSampleFishes}
-                    deleteFish={this.deleteFish}>
+                    deleteFish={this.deleteFish}
+                    storeId={this.props.match.params.storeId}>
                     
                     </Inventory>
             </div>

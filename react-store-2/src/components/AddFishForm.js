@@ -1,6 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 class AddFishForm extends React.Component {
+    static propTypes = {
+        addFish: PropTypes.func
+    }
     // Create new Fish instance 
     // 1. Store data submitted by user in state variables
     name = React.createRef();
